@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .download-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+        }
+        .success-message {
+            color: green;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download Processed File</h1>
+    
+    <div class="download-container">
+        {% if error_message %}
+        <div class="error-message">
+            {{ error_message }}
+        </div>
+        {% else %}
+        <div class="success-message">
+            Your files have been processed successfully!
+        </div>
+        <p>Processed file: {{ filename }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Download File</button>
+        </form>
+        {% endif %}
+        
+        <p style="margin-top: 20px;">
+            <a href="{% url 'upload_files' %}">Process another file</a>
+        </p>
+    </div>
+</body>
+</html>
