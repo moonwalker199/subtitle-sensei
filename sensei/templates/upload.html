@@ -1,68 +1,117 @@
-<!-- templates/upload.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Upload Files for Subtitle Synchronization</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
+            background-color: #1b1a1a; /* Dark background */
+            font-family: 'Roboto', sans-serif;
+            color: #4d90fe; /* Blue text */
+        }
+        .custom-card {
+            background-color: rgba(95, 80, 123, 0.9); /* Semi-transparent background */
+            border-radius: 8px;
             padding: 20px;
+            color: #fff; /* White text */
+            margin-bottom: 20px; /* Space between cards */
         }
-        .upload-form {
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 5px;
+        .logo {
+            width: 40px; /* Smaller logo */
+            height: 40px; /* Fixed height to match text size */
+            margin-right: 10px; /* Space between logo and text */
         }
-        .error-message {
-            color: red;
-            margin-bottom: 15px;
+        .logo-text {
+            font-size: 24px;
+            color: #4d90fe; /* Blue text */
+            font-weight: bold;
         }
-        .form-group {
-            margin-bottom: 15px;
+        .form-label {
+            color: #4d90fe; /* Blue text */
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .form-control-file {
+            color: #333; /* Dark text for input files */
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .btn-primary {
+            background-color: #4d90fe; /* Blue button */
+            border-color: #4d90fe;
+            color: #fff; /* White text */
         }
-        button:hover {
-            background-color: #45a049;
+        .btn-primary:hover {
+            background-color: #357ae8; /* Darker blue on hover */
+            border-color: #357ae8;
+        }
+        .btn-secondary {
+            background-color: #6c757d; /* Secondary button color */
+            border-color: #6c757d;
+            color: #fff; /* White text */
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker on hover */
+            border-color: #545b62;
+        }
+        .title {
+            font-weight: bold;
+            color: #4d90fe; /* Blue text */
+        }
+        .tagline {
+            font-size: 1.2rem;
+            color: #ffb6c1; /* Light pink text */
+            text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Upload Files for Subtitle Synchronization</h1>
-    
-    {% if error_message %}
-    <div class="error-message">
-        {{ error_message }}
-    </div>
-    {% endif %}
-    
-    <div class="upload-form">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="file1">Video File:</label>
-                <input type="file" id="file1" name="file1" accept="video/*" required>
+    <div class="container mt-4">
+        <div class="d-flex align-items-center mb-4">
+            <img src="flame.jpeg" alt="Logo" class="logo">
+            <div class="logo-text">SubtleSync</div>
+        </div>
+        <h1 class="text-center title mb-4">Seamlessly Sync Your Subtitles with SubtleSync</h1>
+        <p class="tagline">
+            Upload Your Files for Subtitle Synchronization
+        </p>
+        
+        <div class="card custom-card">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="file1" class="form-label">Video File:</label>
+                                    <input type="file" id="file1" name="file1" accept="video/*" required class="form-control-file">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="incorrect_srt" class="form-label">Incorrect Subtitle File:</label>
+                                    <input type="file" id="incorrect_srt" name="incorrect_srt" accept=".srt" required class="form-control-file">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Process Files</button>
+                    </div>
+                </form>
             </div>
-            
-            <div class="form-group">
-                <label for="incorrect_srt">Incorrect Subtitle File:</label>
-                <input type="file" id="incorrect_srt" name="incorrect_srt" accept=".srt" required>
-            </div>
-            
-            <button type="submit">Process Files</button>
-        </form>
+        </div>
+        
+
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

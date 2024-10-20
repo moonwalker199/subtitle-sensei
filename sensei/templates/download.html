@@ -2,18 +2,55 @@
 <html>
 <head>
     <title>Download Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
+            background-color: #1b1a1a; /* Dark background */
+            font-family: 'Roboto', sans-serif;
+            color: #4d90fe; /* Blue text */
+        }
+        .custom-card {
+            background-color: rgba(95, 80, 123, 0.9); /* Semi-transparent background */
+            border-radius: 8px;
             padding: 20px;
+            color: #fff; /* White text */
+            margin-bottom: 20px; /* Space between cards */
+        }
+        .logo {
+            width: 40px; /* Smaller logo */
+            height: 40px; /* Fixed height to match text size */
+            margin-right: 10px; /* Space between logo and text */
+        }
+        .logo-text {
+            font-size: 24px;
+            color: #4d90fe; /* Blue text */
+            font-weight: bold;
+        }
+        .form-label {
+            color: #4d90fe; /* Blue text */
+        }
+        .btn-primary {
+            background-color: #4d90fe; /* Blue button */
+            border-color: #4d90fe;
+            color: #fff; /* White text */
+        }
+        .btn-primary:hover {
+            background-color: #357ae8; /* Darker blue on hover */
+            border-color: #357ae8;
+        }
+        .title {
+            font-weight: bold;
+            color: #4d90fe; /* Blue text */
+            
         }
         .download-container {
+            background-color: rgba(95, 80, 123, 0.9); /* Semi-transparent background */
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 5px;
             text-align: center;
+            color: #fff; /* White text */
+            margin-bottom: 20px; /* Space between cards */
         }
         .error-message {
             color: red;
@@ -23,41 +60,49 @@
             color: green;
             margin-bottom: 15px;
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .btn-secondary {
+            background-color: #ff6347; /* Eye-catching color: Tomato */
+            border-color: #ff6347;
+            color: #fff; /* White text */
         }
-        button:hover {
-            background-color: #45a049;
+        .btn-secondary:hover {
+            background-color: #ff4500; /* Darker on hover */
+            border-color: #ff4500;
         }
     </style>
 </head>
 <body>
-    <h1>Download Processed File</h1>
-    
-    <div class="download-container">
-        {% if error_message %}
-        <div class="error-message">
-            {{ error_message }}
+    <div class="container mt-4">
+        <div class="d-flex align-items-center mb-4">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="logo-text">SubtleSync</div>
         </div>
-        {% else %}
-        <div class="success-message">
-            Your files have been processed successfully!
-        </div>
-        <p>Processed file: {{ filename }}</p>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit">Download File</button>
-        </form>
-        {% endif %}
+        <h1 class="text-center title mb-4">Download Processed File</h1>
         
-        <p style="margin-top: 20px;">
-            <a href="{% url 'upload_files' %}">Process another file</a>
-        </p>
+        <div class="download-container">
+            {% if error_message %}
+            <div class="error-message">
+                {{ error_message }}
+            </div>
+            {% else %}
+            <div class="success-message">
+                Your files have been processed successfully!
+            </div>
+            <p>Processed file: {{ filename }}</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit">Download File</button>
+            </form>
+            {% endif %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'upload_files' %}" class="btn btn-secondary">Process Another File</a>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
