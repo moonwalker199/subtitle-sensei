@@ -14,8 +14,8 @@ This web application allows users to upload an MP4 video file and a correspondin
 
 ## Tech Stack
 
-- **Backend:** 
-- **Frontend:** 
+- **Backend:** :- Django
+- **Frontend:** :- HTML, CSS(BootStrap), JS
 
 ## Requirements
 
